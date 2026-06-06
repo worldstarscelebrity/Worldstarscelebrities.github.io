@@ -242,58 +242,13 @@
     color: rgba(255,255,255,0.95);
     text-align: center;
     text-transform: uppercase;
-    margin-top: 16px;
+    margin-top: 4px;
     text-shadow: 0 0 16px rgba(255,255,255,0.3);
   }
 
   @keyframes shimmer { from{opacity:0.9} to{opacity:1} }
   @keyframes gemFlicker { 0%,100%{opacity:1} 50%{opacity:0.4} }
   @keyframes fadeDown { from{opacity:0;transform:translateY(-28px)} to{opacity:1;transform:translateY(0)} }
-
-  /* ── DESIGN COMPONENT: BRANDED INFO HUB BLOCK ── */
-  .brand-info-block {
-    background: rgba(11, 58, 58, 0.15);
-    border: 1px dashed rgba(255, 255, 255, 0.25);
-    border-radius: 4px;
-    padding: 20px 24px;
-    margin: 10px 0 0 0;
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-    animation: fadeDown 1.5s cubic-bezier(.22,1,.36,1) both;
-  }
-  .info-block-segment {
-    margin-bottom: 12px;
-  }
-  .info-block-segment:last-child {
-    margin-bottom: 0;
-  }
-  .info-block-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--cream-bg);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .info-block-text {
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.9);
-  }
-  .info-block-text a {
-    color: #64ffda;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
-  }
-  .info-block-text a:hover {
-    border-bottom-color: #64ffda;
-    text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
-  }
 
   /* ── CARD ── */
   .card {
@@ -430,7 +385,7 @@
 
   textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
 
-  /* ── REAL-TIME PASSPORT CAMERA ELEMENT ── */
+  /* ── REAL-TIME PASSPORT CAMERA ELEMENT (RESIZED & STABILIZED) ── */
   .passport-container {
     display: flex;
     flex-direction: column;
@@ -604,7 +559,7 @@
     font-weight: 800;
   }
 
-  .tier-statusBar {
+  .active-tier-status-bar {
     font-family: 'Cinzel', serif;
     font-size: 0.75rem;
     letter-spacing: 0.15em;
@@ -1196,32 +1151,13 @@
       </div>
     </div>
 
-    <div class="brand-name">World Stars Celebrities HUB</div>
+    <div class="brand-name">World  Stars Celebrities HUB</div>
     <div class="brand-tagline">✦ &nbsp; Meet Your Favourite Stars &nbsp; ✦</div>
     <div class="divider-orn">
       <div class="line"></div>
       <div class="gem">◆</div>
       <div class="line"></div>
     </div>
-
-    <!-- BRANDED CONTACTS & LOCATION INTERFACE BLOCK (MOVED UPWARDS) -->
-    <div class="brand-info-block">
-      <div class="info-block-segment">
-        <div class="info-block-title">Contacts</div>
-        <div class="info-block-text">
-          Email: <a href="mailto:worldstarscelebrity@gmail.com">worldstarscelebrity@gmail.com</a> &nbsp;|&nbsp; 
-          Telegram: <a href="https://t.me/world_stars_celebrity" target="_blank" rel="noopener noreferrer">t.me/world_stars_celebrity</a>
-        </div>
-      </div>
-      <div class="info-block-segment">
-        <div class="info-block-title">Location</div>
-        <div class="info-block-text">
-          Hollywood Blvd & Highland Ave, Los Angeles, California — epicenter of the global entertainment industry.
-        </div>
-      </div>
-    </div>
-
-    <!-- VIP MEMBERSHIP APPLICATION SUBHEADING (MOVED DOWNWARDS) -->
     <div class="form-heading">VIP Membership Application</div>
   </div>
 
@@ -1338,7 +1274,7 @@
 
         </div>
         
-        <div class="tier-statusBar" id="tierStatusBar">Active: Tier I — Luminary</div>
+        <div class="active-tier-status-bar" id="tierStatusBar">Active: Tier I — Luminary</div>
         <input type="hidden" id="selectedTierInput" value="Tier I — Luminary">
       </div>
 
@@ -1450,6 +1386,7 @@ async function initiateCamera() {
   const faceGuide = document.getElementById('passportFaceGuide');
 
   try {
+    // Explicit modern capability checks with standard aspect constraint architecture
     const constraints = {
       video: { 
         width: { ideal: 480 }, 
@@ -1467,6 +1404,7 @@ async function initiateCamera() {
       video.src = window.URL.createObjectURL(localStream);
     }
 
+    // Trigger explicit asynchronous video load listener to secure canvas layout scaling bounds
     video.onloadedmetadata = () => {
       video.play().catch(e => console.log("Video track playback error context: ", e));
     };
@@ -1495,6 +1433,7 @@ function captureSnapshot() {
   canvas.height = video.videoHeight || 600;
   const ctx2d = canvas.getContext('2d');
   
+  // Apply luxury mirror transformation configuration bounds mapping
   ctx2d.translate(canvas.width, 0);
   ctx2d.scale(-1, 1);
   ctx2d.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -1868,3 +1807,4 @@ function spawnConfetti() {
 </script>
 </body>
 </html>
+,,
